@@ -12,20 +12,20 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             TabView {
-                HomeView()
+                HomeScreen()
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
                     }
                 
                 
                 
-                MyBookShelfView()
+                MyBookShelfScreen()
                     .tabItem {
                         Label("MyBookShelfView", systemImage: "books.vertical")
                     }
 
                 
-                UserView()
+                UserScreen()
                     .tabItem {
                         Label("User", systemImage: "person")
                     }
