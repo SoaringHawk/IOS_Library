@@ -16,6 +16,9 @@ struct Book: Codable, Identifiable {
     var image: String
 }
 
+// pagination -> it can 1-n items in each scroll.
+
+
 //Defines the categories of books available in the library.
 enum Category: String, Codable, CaseIterable {
     case fiction = "Fiction"
