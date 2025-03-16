@@ -6,106 +6,126 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		049AB31A2D87172500BB867B /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 049AB3192D87172500BB867B /* FirebaseCore */; };
+		049AB31C2D87172900BB867B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 049AB31B2D87172900BB867B /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		E674C32F2D715BF40038F059 /* LibrarySystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibrarySystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		049AB29F2D87121F00BB867B /* LibrarySystemV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibrarySystemV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		E674C3312D715BF40038F059 /* LibrarySystem */ = {
+		049AB2A12D87121F00BB867B /* LibrarySystemV2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = LibrarySystem;
+			path = LibrarySystemV2;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E674C32C2D715BF40038F059 /* Frameworks */ = {
+		049AB29C2D87121F00BB867B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049AB31A2D87172500BB867B /* FirebaseCore in Frameworks */,
+				049AB31C2D87172900BB867B /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E674C3262D715BF40038F059 = {
+		049AB2962D87121F00BB867B = {
 			isa = PBXGroup;
 			children = (
-				E674C3312D715BF40038F059 /* LibrarySystem */,
-				E674C3302D715BF40038F059 /* Products */,
+				049AB2A12D87121F00BB867B /* LibrarySystemV2 */,
+				049AB3182D87172500BB867B /* Frameworks */,
+				049AB2A02D87121F00BB867B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E674C3302D715BF40038F059 /* Products */ = {
+		049AB2A02D87121F00BB867B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E674C32F2D715BF40038F059 /* LibrarySystem.app */,
+				049AB29F2D87121F00BB867B /* LibrarySystemV2.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		049AB3182D87172500BB867B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E674C32E2D715BF40038F059 /* LibrarySystem */ = {
+		049AB29E2D87121F00BB867B /* LibrarySystemV2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E674C33D2D715BF50038F059 /* Build configuration list for PBXNativeTarget "LibrarySystem" */;
+			buildConfigurationList = 049AB2AD2D87122100BB867B /* Build configuration list for PBXNativeTarget "LibrarySystemV2" */;
 			buildPhases = (
-				E674C32B2D715BF40038F059 /* Sources */,
-				E674C32C2D715BF40038F059 /* Frameworks */,
-				E674C32D2D715BF40038F059 /* Resources */,
+				049AB29B2D87121F00BB867B /* Sources */,
+				049AB29C2D87121F00BB867B /* Frameworks */,
+				049AB29D2D87121F00BB867B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				E674C3312D715BF40038F059 /* LibrarySystem */,
+				049AB2A12D87121F00BB867B /* LibrarySystemV2 */,
 			);
-			name = LibrarySystem;
+			name = LibrarySystemV2;
 			packageProductDependencies = (
+				049AB3192D87172500BB867B /* FirebaseCore */,
+				049AB31B2D87172900BB867B /* FirebaseFirestore */,
 			);
-			productName = LibrarySystem;
-			productReference = E674C32F2D715BF40038F059 /* LibrarySystem.app */;
+			productName = LibrarySystemV2;
+			productReference = 049AB29F2D87121F00BB867B /* LibrarySystemV2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E674C3272D715BF40038F059 /* Project object */ = {
+		049AB2972D87121F00BB867B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1610;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					E674C32E2D715BF40038F059 = {
-						CreatedOnToolsVersion = 16.1;
+					049AB29E2D87121F00BB867B = {
+						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
-			buildConfigurationList = E674C32A2D715BF40038F059 /* Build configuration list for PBXProject "LibrarySystem" */;
+			buildConfigurationList = 049AB29A2D87121F00BB867B /* Build configuration list for PBXProject "LibrarySystemV2" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E674C3262D715BF40038F059;
+			mainGroup = 049AB2962D87121F00BB867B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				049AB2F52D8714E900BB867B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = E674C3302D715BF40038F059 /* Products */;
+			productRefGroup = 049AB2A02D87121F00BB867B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E674C32E2D715BF40038F059 /* LibrarySystem */,
+				049AB29E2D87121F00BB867B /* LibrarySystemV2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E674C32D2D715BF40038F059 /* Resources */ = {
+		049AB29D2D87121F00BB867B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +135,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E674C32B2D715BF40038F059 /* Sources */ = {
+		049AB29B2D87121F00BB867B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +145,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E674C33B2D715BF50038F059 /* Debug */ = {
+		049AB2AB2D87122100BB867B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -177,7 +197,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -188,7 +208,7 @@
 			};
 			name = Debug;
 		};
-		E674C33C2D715BF50038F059 /* Release */ = {
+		049AB2AC2D87122100BB867B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -234,7 +254,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -244,15 +264,14 @@
 			};
 			name = Release;
 		};
-		E674C33E2D715BF50038F059 /* Debug */ = {
+		049AB2AE2D87122100BB867B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"LibrarySystem/Preview Content\"";
-				DEVELOPMENT_TEAM = SUHLH8GPNP;
+				DEVELOPMENT_ASSET_PATHS = "\"LibrarySystemV2/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -265,7 +284,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yunxian.LibrarySystem;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christian.LibrarySystemV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -273,15 +292,14 @@
 			};
 			name = Debug;
 		};
-		E674C33F2D715BF50038F059 /* Release */ = {
+		049AB2AF2D87122100BB867B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"LibrarySystem/Preview Content\"";
-				DEVELOPMENT_TEAM = SUHLH8GPNP;
+				DEVELOPMENT_ASSET_PATHS = "\"LibrarySystemV2/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -294,7 +312,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yunxian.LibrarySystem;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christian.LibrarySystemV2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -305,25 +323,49 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E674C32A2D715BF40038F059 /* Build configuration list for PBXProject "LibrarySystem" */ = {
+		049AB29A2D87121F00BB867B /* Build configuration list for PBXProject "LibrarySystemV2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E674C33B2D715BF50038F059 /* Debug */,
-				E674C33C2D715BF50038F059 /* Release */,
+				049AB2AB2D87122100BB867B /* Debug */,
+				049AB2AC2D87122100BB867B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E674C33D2D715BF50038F059 /* Build configuration list for PBXNativeTarget "LibrarySystem" */ = {
+		049AB2AD2D87122100BB867B /* Build configuration list for PBXNativeTarget "LibrarySystemV2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E674C33E2D715BF50038F059 /* Debug */,
-				E674C33F2D715BF50038F059 /* Release */,
+				049AB2AE2D87122100BB867B /* Debug */,
+				049AB2AF2D87122100BB867B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		049AB2F52D8714E900BB867B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		049AB3192D87172500BB867B /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 049AB2F52D8714E900BB867B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		049AB31B2D87172900BB867B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 049AB2F52D8714E900BB867B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = E674C3272D715BF40038F059 /* Project object */;
+	rootObject = 049AB2972D87121F00BB867B /* Project object */;
 }
