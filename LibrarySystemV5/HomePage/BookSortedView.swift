@@ -52,11 +52,21 @@ struct BookGridItem: View {
     var body: some View {
         VStack {
             
-            Image(systemName: "book.fill")  // Using a system image as a placeholder
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 150)
-                .cornerRadius(8)
+            AsyncImage(url: URL(string: book.imgUrl)) { phase in
+                switch phase {
+                case .empty:
+                    ProgressView() //
+                case .success(let image):
+                    image.resizable()
+                         .scaledToFit()
+                         .frame(width: 120, height: 180)
+                         .cornerRadius(8)
+                case .failure:
+                    Image(systemName: "book.fill") //
+                @unknown default:
+                    EmptyView()
+                }
+            };
             
             // Book title
             Text(book.title)

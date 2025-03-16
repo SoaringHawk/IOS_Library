@@ -14,20 +14,21 @@ struct Book: Identifiable, Codable {
     let category: String // This is a string in Firestore
     let isRented: Bool
     let title: String
+    let imgUrl: String
     
     
 }
 
 
 //Defines the categories of books available in the library.
-//enum Category: String, Codable, CaseIterable {
-//    case fiction = "Fiction"
-//    case scienceFiction = "ScienceFiction"
-//    case history = "History"
-//    case economics = "Economics"
-//    case fantasy = "Fantasy"
-//    case psychology = "Psychology"
-//}
+enum Category: String, Codable, CaseIterable {
+    case fiction = "Fiction"
+    case scienceFiction = "ScienceFiction"
+    case history = "History"
+    case economics = "Economics"
+    case fantasy = "Fantasy"
+    case psychology = "Psychology"
+}
 
 //let booksData: [Book] = [
 //    Book(id: 1, title: "L'Étranger", author: "Albert Camus", category: .fiction, image: "etranger"),

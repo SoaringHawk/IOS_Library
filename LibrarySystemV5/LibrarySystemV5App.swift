@@ -1,6 +1,6 @@
 //
-//  LibrarySystemV2App.swift
-//  LibrarySystemV2
+//  LibrarySystemV5App.swift
+//  LibrarySystemV5
 //
 //  Created by Christian Marcelin on 16/03/2025.
 //
@@ -12,6 +12,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
+    if FirebaseApp.app() != nil {
+              print("✅ Firebase initialized successfully")
+          } else {
+              print("❌ Firebase failed to initialize")
+          }
 
     return true
   }
@@ -19,7 +24,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 
 @main
-struct LibrarySystemV2App: App {
+struct LibrarySystemV5App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {

@@ -12,6 +12,7 @@ import Combine
 class BooksViewModel: ObservableObject{
     static let shared = BooksViewModel()
     
+    
     private let db = Firestore.firestore() // initialize the database
     
     @Published var books: [Book] = []
@@ -49,6 +50,8 @@ class BooksViewModel: ObservableObject{
             } ?? []
         }
     }
+    
+   
     
 //    func addTodo(title: String) {
 //        let newTodo = Todo(title: title, isDone: false)
