@@ -11,7 +11,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     @StateObject private var firebaseManager = BooksViewModel.shared
-    @State private var recommendedBooks: [Book] = []
+//    @State private var recommendedBooks: [Book] = []
     @State private var filteredBooks: [Book] = [] // Filtered books list
     @State private var selectedCategory: Category? = nil
     @State private var showLogin = false // Show login status
@@ -24,7 +24,7 @@ struct HomeScreen: View {
             
             SearchView(showLogin: $showLogin, searchText: $searchText)
             
-            //AdvertisementScrollView()
+            AdvertisementScrollView()
 
             Recommendation() 
             

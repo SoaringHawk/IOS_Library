@@ -78,6 +78,18 @@ func checkFirestoreConnection() {
     }
 }
 
+struct ExploreMoreButton: View {
+    var action: () -> Void
+
+    var body: some View {
+        Button("Explore More", action: action)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+    }
+}
+
 #Preview {
     Recommendation()
 }

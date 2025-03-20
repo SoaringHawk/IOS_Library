@@ -6,11 +6,14 @@
 ////
 //
 //import SwiftUI
+//import Foundation
+//import FirebaseFirestore
+//
+//class
 //
 //struct RecommendedBooksView: View {
 //    @StateObject private var firebaseManager = FirebaseViewModel.shared
 //
-//   
 //
 //    var body: some View {
 //        VStack(alignment: .leading) {
@@ -29,7 +32,7 @@
 //                                .scaledToFit()
 //                                .frame(width: 120, height: 180)
 //                                .cornerRadius(8)
-//                            Text(bookTitle)
+//                            Text()
 //                                .fontWeight(.semibold)
 //                        }
 //                        .padding(.leading)
