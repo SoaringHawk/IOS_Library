@@ -15,7 +15,7 @@ struct AdvertisementScrollView: View {
             ForEach(adImages, id: \.self) { imgName in
                 Image(imgName)
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .frame(width: UIScreen.main.bounds.width, height: 200)
                     .clipped()
             }
