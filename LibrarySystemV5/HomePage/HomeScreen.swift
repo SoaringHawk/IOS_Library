@@ -19,6 +19,7 @@ struct HomeScreen: View {
     
 
     var body: some View {
+<<<<<<< HEAD
         NavigationStack{
             VStack {
                 
@@ -36,6 +37,20 @@ struct HomeScreen: View {
                 print("Hello")
             }
             .padding(.top)
+=======
+        
+        VStack {
+            
+            SearchView(showLogin: $showLogin, searchText: $searchText)
+            
+            AdvertisementScrollView()
+
+            Recommendation() 
+            
+
+            
+            BookSortedView()
+>>>>>>> f0ca11c928a0f0fb1f787e4da801b87946d1c913
         }
         
         
