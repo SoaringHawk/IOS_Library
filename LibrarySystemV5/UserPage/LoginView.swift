@@ -1,0 +1,87 @@
+//
+//  LoginView.swift
+//  LibrarySystemV5
+//
+//  Created by Christian Marcelin on 22/03/2025.
+//
+
+import SwiftUI
+
+struct LoginView: View {
+    @StateObject private var firebaseManager = BooksViewModel.shared
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var isSecure: Bool = true
+    @State private var errorMessage: String? = nil
+    
+    var body: some View {
+        
+        VStack(spacing: 20) {
+            Spacer()
+            Text("Login")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            
+            TextField("Email", text: $email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.horizontal)
+                .autocapitalization(.none)
+                .keyboardType(.emailAddress)
+            
+            HStack {
+                if isSecure {
+                    SecureField("Password", text: $password)
+                } else {
+                    TextField("Password", text: $password)
+                }
+                Button(action: {
+                    isSecure.toggle()
+                }) {
+                    Image(systemName: isSecure ? "eye.slash" : "eye")
+                        .foregroundColor(.gray)
+                }
+            }
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(.horizontal)
+            
+            if let errorMessage = errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+            }
+            
+            Button(action: {
+                firebaseManager.loginUser(email: email, password: password) { error in
+                    if let error = error {
+                        errorMessage = error.localizedDescription
+                    } else {
+                        errorMessage = nil // Successful login
+                    }
+                }
+            }) {
+                Text("Login")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+            }
+            
+            Spacer()
+            
+            HStack{
+                NavigationLink(destination: RegisterView()){
+                    Text("Don't have an account yet? Register")
+                        .foregroundStyle(.blue)
+                }
+            }
+        }
+        .padding()
+    }
+}
+
+#Preview {
+    LoginView()
+}
+

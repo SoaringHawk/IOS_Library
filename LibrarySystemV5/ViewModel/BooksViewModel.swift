@@ -16,11 +16,14 @@ class BooksViewModel: ObservableObject{
     private let db = Firestore.firestore() // initialize the database
     
     @Published var books: [Book] = []
+    @Published var isAuthenticated: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
     init() {
         fetchBooks()
     }
+    
+    
     
     func fetchHomePageBooks() {
         db.collection("books")
@@ -50,6 +53,53 @@ class BooksViewModel: ObservableObject{
             } ?? []
         }
     }
+    
+    func loginUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
+            let db = Firestore.firestore()
+            db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                
+                guard let document = snapshot?.documents.first else {
+                    completion(NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "User not found"]))
+                    return
+                }
+                
+                let userData = document.data()
+                if let storedPassword = userData["password"] as? String, storedPassword == password {
+                    completion(nil) // Success
+                } else {
+                    completion(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Incorrect password"]))
+                }
+            }
+        }
+    
+    func registerUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
+            let db = Firestore.firestore()
+            
+            // Check if the email is already registered
+            db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                
+                if snapshot?.documents.isEmpty == false {
+                    completion(NSError(domain: "", code: 409, userInfo: [NSLocalizedDescriptionKey: "Email already registered"]))
+                    return
+                }
+                
+                // Save user data
+                db.collection("Users").addDocument(data: [
+                    "email": email,
+                    "password": password // Ideally, use Firebase Authentication and store only hashed passwords
+                ]) { error in
+                    completion(error)
+                }
+            }
+        }
     
    
     

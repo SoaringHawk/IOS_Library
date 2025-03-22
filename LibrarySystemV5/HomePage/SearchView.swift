@@ -10,24 +10,39 @@ import SwiftUI
 struct SearchView: View {
     @Binding var showLogin: Bool
     @Binding var searchText: String
+    @StateObject private var firebaseManager = BooksViewModel.shared
+
 
     var body: some View {
-        HStack {
-            Button("Login") {
-                showLogin.toggle()
+        NavigationStack {
+            HStack {
+                if (!firebaseManager.isAuthenticated){
+                    NavigationLink(destination: LoginView()) {
+                        Text("Login")
+                            .frame(width: 50, height: 10)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                    }
+                }
+                
+
+                Spacer()
+
+                HStack{
+                    TextField("Search for books...", text: $searchText)
+                }
+                
+                .padding(10)
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(5)
             }
             .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(8)
-
-            Spacer()
-
-            TextField("Search for books...", text: $searchText)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(height: 44)
         }
-        .padding()
+        
+        
     }
 }
 
