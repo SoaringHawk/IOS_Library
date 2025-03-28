@@ -7,7 +7,6 @@
 //
 import SwiftUI
 
-
 struct CategoryView: View {
     @Binding var selectedCategory: Category?
     var onCategorySelect: (Category) -> Void

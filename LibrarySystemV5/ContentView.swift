@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isUserLoggedIn = false
+
     var body: some View {
-        TabView {
-            HomeScreen()
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
+        NavigationStack {
+            if isUserLoggedIn {
+                TabView {
+                    HomeScreen(isUserLoggedIn: $isUserLoggedIn)
+                        .tabItem {
+                            Label("Home", systemImage: "house.fill")
+                        }
+
+                    MyBookShelfScreen()
+                        .tabItem {
+                            Label("MyBookShelf", systemImage: "books.vertical")
+                        }
+
+                    UserScreen()
+                        .tabItem {
+                            Label("User", systemImage: "person")
+                        }
                 }
-            
-            MyBookShelfScreen()
-                .tabItem {
-                    Label("MyBookShelf", systemImage: "books.vertical")
-                }
-            
-            
-            UserScreen()
-                .tabItem {
-                    Label("User", systemImage: "person")
-                }
+            } else {
+                LoginView(isUserLoggedIn: $isUserLoggedIn)
+            }
         }
     }
 }

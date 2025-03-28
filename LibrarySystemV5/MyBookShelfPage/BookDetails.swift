@@ -18,7 +18,7 @@ struct BookDetails: View {
                     .scaledToFit()
                     .frame(width: 120, height: 180)
                     .cornerRadius(8)
-                Text("The fire of the lord")
+                Text("The Fire of the Lord")
                     .font(.title)
                     .padding(.bottom)
                 

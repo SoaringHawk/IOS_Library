@@ -4,30 +4,25 @@
 ////
 ////  Created by YunXian Xu on 2025-03-11.
 ////
-//
+
 import Foundation
 import FirebaseFirestore
 import Combine
-//
+
 class BooksViewModel: ObservableObject{
     static let shared = BooksViewModel()
-    
-    
     private let db = Firestore.firestore() // initialize the database
     
     @Published var books: [Book] = []
-    @Published var randomBooks: [Book] = [] //for save random books
-    @Published var isAuthenticated: Bool = false
+    @Published var randomBooks: [Book] = []
+    @Published var userLibrary: [Book] = []
     private var cancellables = Set<AnyCancellable>()
     
     init() {
         fetchBooks()
     }
     
-    
-    
-    
-    //Real-time fetching and updating of books information from the database
+    // real-time fetching and updating of books information from the database
     func fetchBooks() {
         db.collection("books").addSnapshotListener { querySnapshot, error in
             if let error = error {
@@ -35,20 +30,19 @@ class BooksViewModel: ObservableObject{
                 return
             }
             
-//            self.books = querySnapshot?.documents.compactMap { document in
-//                try? document.data(as: Book.self)
-//            } ?? []
+            //            self.books = querySnapshot?.documents.compactMap { document in
+            //                try? document.data(as: Book.self)
+            //            } ?? []
             
             self.books = querySnapshot?.documents.compactMap { document in
                 try? document.data(as: Book.self)
             } ?? []
             
-
+            
             self.refreshRandomBooks()
             
         }
     }
-    
     
     func refreshRandomBooks() {
         DispatchQueue.main.async {
@@ -56,17 +50,21 @@ class BooksViewModel: ObservableObject{
         }
     }
     
+    func addToLibrary(book: Book) {
+            db.collection("userLibrary").addDocument(data: [
+                "id": book.id,
+                "title": book.title,
+                "author": book.author,
+                "imgUrl": book.imgUrl
+            ]) { error in
+                if let error = error {
+                    print("Error adding book to library: \(error)")
+                } else {
+                    print("Book added to library")
+                }
+            }
+        }
 
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    //this function is for user login
     func loginUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
         let db = Firestore.firestore()
         db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
@@ -82,20 +80,16 @@ class BooksViewModel: ObservableObject{
             
             let userData = document.data()
             if let storedPassword = userData["password"] as? String, storedPassword == password {
-                completion(nil) // Success
+                completion(nil) // success
             } else {
                 completion(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Incorrect password"]))
             }
         }
     }
-    
-    
-    
-    //This funciton is for user register
+
     func registerUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
         let db = Firestore.firestore()
         
-        // Check if the email is already registered
         db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
             if let error = error {
                 completion(error)
@@ -106,41 +100,13 @@ class BooksViewModel: ObservableObject{
                 completion(NSError(domain: "", code: 409, userInfo: [NSLocalizedDescriptionKey: "Email already registered"]))
                 return
             }
-            
-            // Save user data
+ 
             db.collection("Users").addDocument(data: [
                 "email": email,
-                "password": password // Ideally, use Firebase Authentication and store only hashed passwords
+                "password": password
             ]) { error in
                 completion(error)
             }
         }
     }
-    
-    
-    
-    //    func addTodo(title: String) {
-    //        let newTodo = Todo(title: title, isDone: false)
-    //        do {
-    //            try db.collection("todos").addDocument(from: newTodo)
-    //        } catch {
-    //            print("Error adding todo: \(error)")
-    //        }
-    //    }
-    
-    //    func updateTodoStatus(todo: Todo, isDone: Bool) {
-    //        guard let todoId = todo.id else { return }
-    //        db.collection("todos").document(todoId).updateData(["isDone": isDone])
-    //    }
-    
-    //    func deleteTodo(todo: Todo) {
-    //        guard let todoId = todo.id else { return }
-    //        db.collection("todos").document(todoId).delete { error in
-    //            if let error = error {
-    //                print("Error deleting todo: \(error)")
-    //            }
-    //        }
-    //    }
-    
-    //}
 }

@@ -11,10 +11,10 @@ struct AdvertisementScrollView: View {
     let adImages = ["ad1", "ad2", "ad3"]
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             TabView {
                 ForEach(adImages, id: \.self) { imgName in
-                    NavigationLink(destination: destinationView(for:imgName)){
+                    NavigationLink(destination: destinationView(for: imgName)) {
                         Image(imgName)
                             .resizable()
                             .scaledToFit()
@@ -24,12 +24,10 @@ struct AdvertisementScrollView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .frame(height: 150, alignment: .center)
-            
+            .frame(height: 200)
         }
     }
     
-    // Helper function to determine which view to navigate to based on the image name
     @ViewBuilder
     private func destinationView(for imgName: String) -> some View {
         switch imgName {
@@ -45,9 +43,6 @@ struct AdvertisementScrollView: View {
     }
 }
 
-
-
-// Preview
 struct AdvertisementScrollView_Previews: PreviewProvider {
     static var previews: some View {
         AdvertisementScrollView()
