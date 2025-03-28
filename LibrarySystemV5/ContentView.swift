@@ -7,20 +7,31 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
     var body: some View {
-        
-            TabScreen()
-
-        
+        TabView {
+            HomeScreen()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+            
+            MyBookShelfScreen()
+                .tabItem {
+                    Label("MyBookShelf", systemImage: "books.vertical")
+                }
+            
+            
+            UserScreen()
+                .tabItem {
+                    Label("User", systemImage: "person")
+                }
+        }
     }
 }
 
-
-
-
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
 

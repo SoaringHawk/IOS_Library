@@ -16,15 +16,16 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             HStack {
+                //The login button will show up if the user is not login
                 if (!firebaseManager.isAuthenticated){
                     NavigationLink(destination: LoginView()) {
                         Text("Login")
-                            .frame(width: 50, height: 10)
-                            .padding()
+                            .fontWeight(.medium)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
                             .background(Color.blue)
                             .foregroundColor(.white)
-                            .cornerRadius(8)
-                            .padding(.horizontal)
+                            .cornerRadius(10)
                     }
                 }
                 
@@ -34,12 +35,12 @@ struct SearchView: View {
                 HStack{
                     TextField("Search for books...", text: $searchText)
                 }
-                
-                .padding(10)
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(5)
+                .padding(.all, 10) 
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 2)
+                .frame(height: 44)
             }
-            .padding()
         }
         
         
