@@ -38,6 +38,7 @@ struct RecommendationView: View {
                                 EmptyView()
                             }
                         }
+                        
                         Text(book.title)
                             .fontWeight(.semibold)
                             .frame(width: 120)

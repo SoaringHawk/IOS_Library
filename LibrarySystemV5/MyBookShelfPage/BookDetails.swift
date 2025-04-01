@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BookDetails: View {
     
+    
     var body: some View {
         
             VStack {

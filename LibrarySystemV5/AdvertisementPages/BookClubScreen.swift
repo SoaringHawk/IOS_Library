@@ -8,67 +8,117 @@
 import SwiftUI
 
 struct BookClubScreen: View {
+    // 活动数据
+
+    let hoster = "Jerry"
+    let currentBook = "Three Body Problem"
+    let author = "Cixing Liu"
+    let startDate = "May 1"
+    
     var body: some View {
-        ZStack {
-            // 背景色（浅黄色，类似纸质）
-            Color(red: 0.98, green: 0.96, blue: 0.89)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack(spacing: 20) {
-                // 顶部日期
-                VStack {
-                    Text("APRIL 28")
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                    Text("2025")
-                        .font(.system(size: 20, weight: .semibold, design: .rounded))
-                }
-                .foregroundColor(.brown)
+        ScrollView {
+            VStack(spacing: 0) {
+                Image("BookClub")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 250)
+                    .clipped()
+                    .mask(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.clear, .white]),
+                            startPoint: .bottom,
+                            endPoint: .top
+                        )
+                    )
+                    .blur(radius: 1) // 模糊强度
+                    .overlay(
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            Text("JOIN OUR BOOK CLUB")
+                                .font(.system(size: 32, weight: .black))
+                                .kerning(2)
+                        }
+                        .foregroundColor(.white)
+                        .shadow(radius: 5)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        //leading - text to the left
+                    )
                 
-                // 主标语
-                VStack(spacing: 10) {
-                    Text("Less iPad, More Books!")
-                        .font(.system(size: 28, weight: .heavy, design: .serif))
-                        .foregroundColor(.black)
-                    
-                    Text("Discover our new book collection in Basement Level 1!")
-                        .font(.system(size: 18, weight: .medium, design: .default))
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 20)
-                }
-                
-                // 装饰性图标
-                Image(systemName: "books.vertical.fill")
-                    .font(.system(size: 50))
-                    .foregroundColor(.orange)
-                    .padding(.top, 10)
-                
-                // 副标语
-                Text("Bring your kids to explore the joy of reading.")
-                    .font(.system(size: 16, weight: .regular, design: .default))
+
+                Text("Insights Beyond Paperbacks")
+                    .font(.system(size: 18, weight: .medium, design: .serif))
                     .italic()
-                    .foregroundColor(.black.opacity(0.7))
-                    .padding(.horizontal, 30)
+                    .foregroundColor(.gray.opacity(0.8))
                 
-                // 底部链接风格文本
-                VStack {
-                    Text("Library Reading Week")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                
+                VStack(spacing: 4) {
+                    Text("Moderated by")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .padding(.top, 15)
+                    
+                    Text(hoster)
+                        .font(.title2.weight(.bold))
+                    
+                    Text("Discover the universe's wonders with us")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                VStack(spacing: 5) {
+                    Text("Currently Reading")
+                        .font(.headline.weight(.semibold))
+                        .padding(.top, 25)
+                    
+                    Text(currentBook )
+                        .font(.title2.weight(.bold))
+                        .multilineTextAlignment(.center)
                         .foregroundColor(.blue)
                     
-                    Text("www.ourlibrary.com/newbooks")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(.blue)
-                        .underline()
-                
+                    Text("by \(author)")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
-                .padding(.top, 20)
+                .padding(.horizontal) //Set horizontal padding so that the content does not display against the edge/
+                
+ 
+                Image("ThreeBodyProblem")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width:200, height:200)
+                    .padding(.top, 20)
+                    
+                
+                VStack(alignment: .leading, spacing: 15) {
+                    DetailItemView(
+                        icon: "person.fill.badge.plus",
+                        title: "How to register",
+                        description: "Library 1st floor register with front desk"
+                    )
+                    DetailItemView(
+                        icon: "list.bullet.rectangle.portrait",
+                        title: "What you need to prepare",
+                        description: "Current Book, ID, library card"
+                    )
+                    DetailItemView(
+                        icon: "calendar",
+                        title: "Book club time",
+                        description: "May 1, 15:00-18:00. 4th Floor Conference Room"
+                    )
+                    
+                }.padding(.top, 30)
+                Color.clear.frame(height: 30)
             }
-            .padding()
         }
+        .background(Color(.systemGroupedBackground))
+        .edgesIgnoringSafeArea(.top)
     }
 }
+
+
 
 #Preview {
     BookClubScreen()
 }
+

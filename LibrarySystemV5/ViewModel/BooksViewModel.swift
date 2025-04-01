@@ -38,6 +38,8 @@ class BooksViewModel: ObservableObject{
 //            self.books = querySnapshot?.documents.compactMap { document in
 //                try? document.data(as: Book.self)
 //            } ?? []
+            //this is Jerry's original one, i modify it(Yunxian)
+            
             
             self.books = querySnapshot?.documents.compactMap { document in
                 try? document.data(as: Book.self)

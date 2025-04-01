@@ -19,26 +19,28 @@ struct HomeScreen: View {
     
     
     var body: some View {
+
+            NavigationStack{
+                VStack {
+                    SearchView(showLogin: $showLogin, searchText: $searchText)
+                    
+                    AdvertisementScrollView()
+                    
+                    RecommendationView()
+                    
+                    
+                    BookSortedView()
+                }
+                .onAppear{
+                    print("Hello")
+                }
+                .padding(.top)
         
-        NavigationStack{
-            VStack {
-                SearchView(showLogin: $showLogin, searchText: $searchText)
-                
-                AdvertisementScrollView()
-                
-                RecommendationView()
                 
                 
-                BookSortedView()
             }
-            .onAppear{
-                print("Hello")
-            }
-            .padding(.top)
-    
-            
-            
-        }
+
+
     }
     
     
