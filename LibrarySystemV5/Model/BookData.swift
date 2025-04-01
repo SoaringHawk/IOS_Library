@@ -11,12 +11,11 @@ import FirebaseFirestore
 struct Book: Identifiable, Codable {
     @DocumentID var id: String?
     let author: String
-    let category: String // This is a string in Firestore
+    let category: String
     let isRented: Bool
     let title: String
     let imgUrl: String
-    
-    
+    let description: String
 }
 
 

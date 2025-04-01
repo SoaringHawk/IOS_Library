@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var firebaseManager = BooksViewModel.shared
+    @ObservedObject private var firebaseManager = BooksViewModel.shared
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isSecure: Bool = true
     @State private var errorMessage: String? = nil
-    
+
+    @Binding var isUserLoggedIn: Bool
+
     var body: some View {
-        
         VStack(spacing: 20) {
             Spacer()
             Text("Login")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            
-            
+
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
                 .autocapitalization(.none)
                 .keyboardType(.emailAddress)
-            
+
             HStack {
                 if isSecure {
                     SecureField("Password", text: $password)
@@ -44,18 +44,19 @@ struct LoginView: View {
             }
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(.horizontal)
-            
+
             if let errorMessage = errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
             }
-            
+
             Button(action: {
                 firebaseManager.loginUser(email: email, password: password) { error in
                     if let error = error {
                         errorMessage = error.localizedDescription
                     } else {
-                        errorMessage = nil // Successful login
+                        errorMessage = nil
+                        isUserLoggedIn = true
                     }
                 }
             }) {
@@ -67,11 +68,11 @@ struct LoginView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
             }
-            
+
             Spacer()
-            
-            HStack{
-                NavigationLink(destination: RegisterView()){
+
+            HStack {
+                NavigationLink(destination: RegisterView()) {
                     Text("Don't have an account yet? Register")
                         .foregroundStyle(.blue)
                 }
@@ -82,6 +83,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(isUserLoggedIn: .constant(false))
 }
-

@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-
 struct BookSortedView: View {
-    @StateObject private var firebaseManager = BooksViewModel.shared  // Using shared FirebaseViewModel
+    @StateObject private var firebaseManager = BooksViewModel.shared
     
     let columns = [
         GridItem(.flexible()),
@@ -41,7 +40,7 @@ struct BookSortedView: View {
             }
         }
         .onAppear {
-            firebaseManager.fetchBooks()  // Ensure data is fetched when the view appears
+            firebaseManager.fetchBooks()
         }
     }
 }
@@ -51,29 +50,26 @@ struct BookGridItem: View {
     
     var body: some View {
         VStack {
-            
             AsyncImage(url: URL(string: book.imgUrl)) { phase in
                 switch phase {
                 case .empty:
-                    ProgressView() //
+                    ProgressView()
                 case .success(let image):
                     image.resizable()
                          .scaledToFit()
                          .frame(width: 120, height: 180)
                          .cornerRadius(8)
                 case .failure:
-                    Image(systemName: "book.fill") //
+                    Image(systemName: "book.fill")
                 @unknown default:
                     EmptyView()
                 }
-            };
+            }
             
-            // Book title
             Text(book.title)
                 .font(.headline)
                 .multilineTextAlignment(.center)
             
-            // Display author if available
             Text(book.author)
                 .font(.subheadline)
                 .foregroundColor(.gray)
@@ -88,8 +84,3 @@ struct BookSortedView_Previews: PreviewProvider {
         BookSortedView()
     }
 }
-
-//
-//#Preview {
-//    BookSortedView()
-//}

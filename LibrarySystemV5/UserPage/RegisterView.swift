@@ -8,51 +8,48 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @StateObject private var firebaseManager = BooksViewModel.shared
+    @ObservedObject private var firebaseManager = BooksViewModel.shared
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
-    @State private var isSecure: Bool = true
     @State private var errorMessage: String? = nil
-    
+
+    @Environment(\.dismiss) var dismiss 
+
     var body: some View {
-        
         VStack(spacing: 20) {
             Spacer()
             Text("Register")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            
+
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
                 .autocapitalization(.none)
                 .keyboardType(.emailAddress)
-            
-            HStack {
-                
-                    SecureField("Password", text: $password)
-                
-                            }
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding(.horizontal)
-            
+
+            SecureField("Password", text: $password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.horizontal)
+
             SecureField("Confirm Password", text: $confirmPassword)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
-            
+
             if let errorMessage = errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
             }
-            
+
             Button(action: {
                 if password == confirmPassword {
                     firebaseManager.registerUser(email: email, password: password) { error in
                         if let error = error {
                             errorMessage = error.localizedDescription
                         } else {
-                            errorMessage = nil // Successful registration
+                            errorMessage = nil
+                            dismiss()
                         }
                     }
                 } else {
@@ -67,7 +64,7 @@ struct RegisterView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
             }
-            
+
             Spacer()
         }
         .padding()
