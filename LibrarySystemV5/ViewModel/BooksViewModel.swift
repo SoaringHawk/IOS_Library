@@ -14,9 +14,17 @@ class BooksViewModel: ObservableObject{
     private let db = Firestore.firestore() // initialize the database
     
     @Published var books: [Book] = []
-    @Published var randomBooks: [Book] = []
+    @Published var randomBooks: [Book] = [] //this is for home page random select book view
     @Published var userLibrary: [Book] = []
     private var cancellables = Set<AnyCancellable>()
+    
+
+    //Begin ---------------- modifty for Catefory Page
+    struct PaginatedResponse {
+        var books: [Book]
+        var lastDocument: DocumentSnapshot? // for firebase pagination
+    }
+    //END ----------------- modifty for Catefory Page
     
     init() {
         fetchBooks()
@@ -44,11 +52,16 @@ class BooksViewModel: ObservableObject{
         }
     }
     
+    
+    
     func refreshRandomBooks() {
         DispatchQueue.main.async {
             self.randomBooks = Array(self.books.shuffled().prefix(4))
         }
     }
+    
+    
+    
     
     func addToLibrary(book: Book) {
             db.collection("userLibrary").addDocument(data: [
@@ -65,6 +78,11 @@ class BooksViewModel: ObservableObject{
             }
         }
 
+    
+    
+    
+    
+    
     func loginUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
         let db = Firestore.firestore()
         db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
@@ -87,6 +105,7 @@ class BooksViewModel: ObservableObject{
         }
     }
 
+    
     func registerUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
         let db = Firestore.firestore()
         

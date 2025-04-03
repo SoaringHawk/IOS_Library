@@ -23,6 +23,11 @@ struct ContentView: View {
                         .tabItem {
                             Label("MyBookShelf", systemImage: "books.vertical")
                         }
+                    
+                    CategoryScreen()
+                        .tabItem {
+                            Label("Category", systemImage: "books.vertical")
+                        }
 
                     UserScreen()
                         .tabItem {
