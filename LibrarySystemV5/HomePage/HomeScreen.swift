@@ -14,19 +14,25 @@ struct HomeScreen: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                SearchView(isUserLoggedIn: $isUserLoggedIn, searchText: $searchText)
-                
-                AdvertisementScrollView().padding(.bottom, 0)
-                
-                RecommendationView(firebaseManager: BooksViewModel.shared)
-                
-                BookSortedView()
+                VStack(spacing: 30) {
+                    SearchView(isUserLoggedIn: $isUserLoggedIn, searchText: $searchText)
+                    
+                    
+                    AdvertisementScrollView()
+                    
+                    
+                    RecommendationView(firebaseManager: BooksViewModel.shared)
+                    
+                    
+                    BookSortedView()
+                    
+                    
+                }
+                .padding(.top, 10)
             }
-            .padding(.top)
         }
     }
 }
-
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen(isUserLoggedIn: .constant(true))

@@ -21,7 +21,7 @@ struct SearchView: View {
                         .fontWeight(.medium)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 16)
-                        .background(Color.red)
+                        .background(Color.orange)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
@@ -35,9 +35,9 @@ struct SearchView: View {
                 .background(Color.white)
                 .cornerRadius(10)
                 .shadow(radius: 2)
-                .frame(height: 44)
+                .frame(height: 14)
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
 }

@@ -13,7 +13,7 @@ struct RecommendationView: View {
     let gridItems = Array(repeating: GridItem(.flexible(), spacing: 20), count: 2)
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 10) {
             Text("Recommended for you")
                 .font(.title)
                 .padding(.leading)
@@ -38,6 +38,7 @@ struct RecommendationView: View {
                                 }
                             }
                             Text(book.title)
+                                .foregroundColor(.gray)
                                 .fontWeight(.semibold)
                                 .frame(width: 120)
                         }
@@ -47,13 +48,13 @@ struct RecommendationView: View {
             Button("Refresh Recommendations") {
                 firebaseManager.refreshRandomBooks()
             }
+            .frame(maxWidth: .infinity) 
             .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(8)
-            .padding(.leading)
-            .padding(.top, 20)
-            .padding(.bottom, 20)
+            .background(Color(red: 0.9, green: 0.9, blue: 0.9)) //light color
+            .foregroundColor(.black)
+            .cornerRadius(20)
+            .padding(.horizontal)
+            .padding(.vertical, 5)
         }
         .onAppear {
             if firebaseManager.randomBooks.isEmpty {

@@ -13,6 +13,7 @@ class BooksViewModel: ObservableObject{
     static let shared = BooksViewModel()
     private let db = Firestore.firestore() // initialize the database
     
+    
     @Published var books: [Book] = []
     @Published var randomBooks: [Book] = [] //this is for home page random select book view
     @Published var userLibrary: [Book] = []
@@ -53,6 +54,7 @@ class BooksViewModel: ObservableObject{
     }
     
     
+   
     
     func refreshRandomBooks() {
         DispatchQueue.main.async {
