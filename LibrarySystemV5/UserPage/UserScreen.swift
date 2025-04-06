@@ -9,8 +9,9 @@ import SwiftUI
 
 struct UserScreen: View {
     @State private var userName = "Bibabu"
+    @ObservedObject private var firebaseManager = BooksViewModel.shared
     @State private var userEmail = "Balala@gmail.com"
-    @State private var isUserLoggedIn = true
+    @Binding var isUserLoggedIn: Bool
 
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
@@ -26,14 +27,14 @@ struct UserScreen: View {
                 .overlay(Circle().stroke(Color.gray, lineWidth: 1))
             
             
-            Text(userName)
+            Text(firebaseManager.loggedUser)
                 .font(.title)
                 .fontWeight(.medium)
             
             
-            Text(userEmail)
-                .font(.callout)
-                .foregroundColor(.gray)
+//            Text(viewModel.loggedUser)
+//                .font(.callout)
+//                .foregroundColor(.gray)
             
             
             if isUserLoggedIn {
@@ -71,6 +72,6 @@ struct UserScreen: View {
 
 struct UserScreen_Previews: PreviewProvider {
     static var previews: some View {
-        UserScreen()
+        UserScreen(isUserLoggedIn: .constant(true))
     }
 }

@@ -17,6 +17,7 @@ class BooksViewModel: ObservableObject{
     @Published var books: [Book] = []
     @Published var randomBooks: [Book] = [] //this is for home page random select book view
     @Published var userLibrary: [Book] = []
+    @Published var loggedUser: String = ""
     private var cancellables = Set<AnyCancellable>()
     
 

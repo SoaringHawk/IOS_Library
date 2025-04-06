@@ -29,7 +29,7 @@ struct ContentView: View {
                             Label("Category", systemImage: "books.vertical")
                         }
 
-                    UserScreen()
+                    UserScreen(isUserLoggedIn: $isUserLoggedIn)
                         .tabItem {
                             Label("User", systemImage: "person")
                         }

@@ -10,6 +10,7 @@ import SwiftUI
 struct MyBookShelfScreen: View {
     @StateObject private var firebaseManager = BooksViewModel.shared
     
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -33,7 +34,11 @@ struct MyBookShelfScreen: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(firebaseManager.books, id: \.id) { book in
-                            BookGridItem(book: book)
+                            if book.renter == firebaseManager.loggedUser {
+                                NavigationLink(destination: Reader(url: URL(string: book.pdfLink)!)) {
+                                    BookGridItem(book: book)
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal)

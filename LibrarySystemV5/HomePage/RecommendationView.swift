@@ -69,10 +69,10 @@ struct Recommendation_Previews: PreviewProvider {
         // fake BooksViewModel instance for the preview
         let mockFirebaseManager = BooksViewModel()
         mockFirebaseManager.randomBooks = [
-            Book(id: "1", author: "Author 1", category: "Fiction", isRented: false, title: "Book 1", imgUrl: "https://example.com/image1.jpg", description: "Description 1"),
-            Book(id: "2", author: "Author 2", category: "Non-Fiction", isRented: true, title: "Book 2", imgUrl: "https://example.com/image2.jpg", description: "Description 2"),
-            Book(id: "3", author: "Author 3", category: "Science", isRented: false, title: "Book 3", imgUrl: "https://example.com/image3.jpg", description: "Description 3"),
-            Book(id: "4", author: "Author 4", category: "History", isRented: false, title: "Book 4", imgUrl: "https://example.com/image4.jpg", description: "Description 4")
+            Book(id: "1", author: "Author 1", category: "Fiction", isRented: false, title: "Book 1", imgUrl: "https://example.com/image1.jpg", description: "Description 1", renter: ""),
+            Book(id: "2", author: "Author 2", category: "Non-Fiction", isRented: true, title: "Book 2", imgUrl: "https://example.com/image2.jpg", description: "Description 2", renter: ""),
+            Book(id: "3", author: "Author 3", category: "Science", isRented: false, title: "Book 3", imgUrl: "https://example.com/image3.jpg", description: "Description 3", renter: "usertest@mail.com"),
+            Book(id: "4", author: "Author 4", category: "History", isRented: false, title: "Book 4", imgUrl: "https://example.com/image4.jpg", description: "Description 4", renter: "usertest@mail.com")
         ]
         
         return RecommendationView(firebaseManager: mockFirebaseManager)

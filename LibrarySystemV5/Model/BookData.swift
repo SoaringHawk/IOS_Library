@@ -16,6 +16,8 @@ struct Book: Identifiable, Codable {
     let title: String
     let imgUrl: String
     let description: String
+    let renter: String
+    let pdfLink: String
 }
 
 

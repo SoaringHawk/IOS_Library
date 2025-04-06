@@ -57,6 +57,7 @@ struct LoginView: View {
                     } else {
                         errorMessage = nil
                         isUserLoggedIn = true
+                        firebaseManager.loggedUser = email
                     }
                 }
             }) {
