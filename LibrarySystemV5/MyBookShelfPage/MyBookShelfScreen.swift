@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyBookShelfScreen: View {
     @StateObject private var firebaseManager = BooksViewModel.shared
-    
+    @State private var navigationActive = false
     
     let columns = [
         GridItem(.flexible()),
@@ -35,8 +35,25 @@ struct MyBookShelfScreen: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(firebaseManager.books, id: \.id) { book in
                             if book.renter == firebaseManager.loggedUser {
-                                NavigationLink(destination: Reader(url: URL(string: book.pdfLink)!)) {
-                                    BookGridItem(book: book)
+                                if let url = URL(string: book.pdfLink), url != nil {
+                                    Button(action: {
+                                        
+                                        navigationActive = true
+                                    }) {
+                                        VStack {
+                                            BookGridItem(book: book)
+                                            Text("Read Book")
+                                                .fontWeight(.bold)
+                                                .foregroundColor(.blue)
+                                                .padding(.top, 5)
+                                        }
+                                    }
+                                    .background(
+                                        NavigationLink(destination: Reader(url: url), isActive: $navigationActive) {
+                                            EmptyView()
+                                        }
+                                        .hidden() // Hide the actual NavigationLink
+                                    )
                                 }
                             }
                         }

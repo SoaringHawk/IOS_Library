@@ -66,7 +66,8 @@ struct BookDetailView_Previews: PreviewProvider {
             title: "Dune",
             imgUrl: "dune",
             description: "Dune is a science fiction novel by Frank Herbert, set on the desert planet Arrakis, focusing on politics, religion, and ecology.",
-            renter: "usertest@mail.com")
+            renter: "usertest@mail.com",
+            pdfLink: "")
         
         BookDetailView(book: sampleBook)
     }
