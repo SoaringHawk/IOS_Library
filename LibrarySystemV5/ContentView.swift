@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var isUserLoggedIn = false
 
     var body: some View {
-        NavigationStack {
+        NavigationView{
             if isUserLoggedIn {
                 TabView {
                     HomeScreen(isUserLoggedIn: $isUserLoggedIn)
@@ -37,7 +37,7 @@ struct ContentView: View {
             } else {
                 LoginView(isUserLoggedIn: $isUserLoggedIn)
             }
-        }
+        }.tint(Color.orange)
     }
 }
 

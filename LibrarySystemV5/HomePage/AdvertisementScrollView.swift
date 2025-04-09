@@ -11,19 +11,24 @@ struct AdvertisementScrollView: View {
     let adImages = ["ad1", "ad2", "ad3"]
     
     var body: some View {
-        TabView {
-            ForEach(adImages, id: \.self) { imgName in
-                NavigationLink(destination: destinationView(for: imgName)) {
-                    Image(imgName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: UIScreen.main.bounds.width, height: 200)
-                        .clipped()
+        NavigationStack {
+            TabView {
+                ForEach(adImages, id: \.self) { imgName in
+                    NavigationLink(destination: destinationView(for: imgName)) {
+                        Image(imgName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.main.bounds.width, height: 200)
+                            .clipped()
+                    }
                 }
             }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+            .frame(height: 200)
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-        .frame(height: 200)
+        .tint(.white)// why!!!!︵‿︵‿ヽ(°□° )ノ︵‿︵‿
+        
+
 
     }
     

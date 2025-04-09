@@ -31,7 +31,7 @@ struct BookSortedView: View {
             } else {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(firebaseManager.books, id: \.id) { book in
+                        ForEach(firebaseManager.books.prefix(6), id: \.id) { book in
                             BookGridItem(book: book)
                         }
                     }

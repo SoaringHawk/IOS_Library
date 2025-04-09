@@ -52,7 +52,8 @@ struct MyBookShelfScreen: View {
                                         NavigationLink(destination: Reader(url: url), isActive: $navigationActive) {
                                             EmptyView()
                                         }
-                                        .hidden() // Hide the actual NavigationLink
+                                        .hidden() // Hide the actual NavigationLink!
+                                        //this is the link for the pdf
                                     )
                                 }
                             }

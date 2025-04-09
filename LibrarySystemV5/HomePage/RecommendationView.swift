@@ -21,6 +21,7 @@ struct RecommendationView: View {
             LazyVGrid(columns: gridItems, spacing: 20) {
                 ForEach(firebaseManager.randomBooks, id: \.id) { book in
                     NavigationLink(destination: BookDetailView(book: book)) {
+                        //This navigation link jump you to the books detail
                         VStack {
                             AsyncImage(url: URL(string: book.imgUrl)) { phase in
                                 switch phase {
