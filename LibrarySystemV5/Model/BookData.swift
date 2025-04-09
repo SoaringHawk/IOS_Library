@@ -12,11 +12,11 @@ struct Book: Identifiable, Codable {
     @DocumentID var id: String?
     let author: String
     let category: String
-    let isRented: Bool
+    var isRented: Bool
     let title: String
     let imgUrl: String
     let description: String
-    let renter: String
+    var renter: String
     let pdfLink: String
 }
 

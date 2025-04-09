@@ -58,6 +58,8 @@ struct LoginView: View {
                         errorMessage = nil
                         isUserLoggedIn = true
                         firebaseManager.loggedUser = email
+                        
+                        
                     }
                 }
             }) {

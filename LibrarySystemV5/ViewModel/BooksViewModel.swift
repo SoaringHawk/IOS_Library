@@ -18,6 +18,7 @@ class BooksViewModel: ObservableObject{
     @Published var randomBooks: [Book] = [] //this is for home page random select book view
     @Published var userLibrary: [Book] = []
     @Published var loggedUser: String = ""
+    @Published var isAdmin: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
 
@@ -87,7 +88,7 @@ class BooksViewModel: ObservableObject{
     
     
     func loginUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
-        let db = Firestore.firestore()
+        
         db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
             if let error = error {
                 completion(error)
@@ -100,8 +101,17 @@ class BooksViewModel: ObservableObject{
             }
             
             let userData = document.data()
+            
             if let storedPassword = userData["password"] as? String, storedPassword == password {
-                completion(nil) // success
+                        
+                // Print the admin value before updating isAdmin
+                if let adminValue = userData["isAdmin"] as? Bool {
+                    print("Admin Value: \(adminValue)")  // Debugging line
+                    self.isAdmin = adminValue
+                }
+                
+                completion(nil) // Success
+                
             } else {
                 completion(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "Incorrect password"]))
             }
@@ -110,9 +120,9 @@ class BooksViewModel: ObservableObject{
 
     
     func registerUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
-        let db = Firestore.firestore()
         
-        db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
+        
+        self.db.collection("Users").whereField("email", isEqualTo: email).getDocuments { snapshot, error in
             if let error = error {
                 completion(error)
                 return
@@ -123,7 +133,7 @@ class BooksViewModel: ObservableObject{
                 return
             }
  
-            db.collection("Users").addDocument(data: [
+            self.db.collection("Users").addDocument(data: [
                 "email": email,
                 "password": password
             ]) { error in
@@ -131,4 +141,43 @@ class BooksViewModel: ObservableObject{
             }
         }
     }
+    
+    func updateBook(bookId: String, userEmail: String){
+        
+        db.collection("books").document(bookId).updateData([
+                "isRented": true,
+                "renter": userEmail
+            ]) { error in
+                if let error = error {
+                    print("Error updating book: \(error.localizedDescription)")
+                } else {
+                    print("Book successfully updated.")
+                }
+            }
+        
+    }
+    
+    // Add Book
+        func addBook(_ book: Book) {
+            do {
+                let _ = try db.collection("Books").addDocument(from: book)
+            } catch {
+                print("Error adding book: \(error)")
+            }
+        }
+        
+        // Delete Book
+        func deleteBook(bookId: String) {
+            db.collection("Books").document(bookId).delete { error in
+                if let error = error {
+                    print("Error deleting book: \(error)")
+                }
+            }
+        }
+        
+        // Add User
+        func addUser(email: String, password: String) {
+            // Firebase Authentication or Database logic to add a user
+            print("Adding user with email: \(email)")
+        }
 }

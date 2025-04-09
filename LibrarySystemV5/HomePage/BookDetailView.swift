@@ -10,6 +10,8 @@ import FirebaseFirestore
 
 struct BookDetailView: View {
     var book: Book
+    @StateObject private var firebaseManager = BooksViewModel.shared
+    @State private var isButtonActive = true
     
     var body: some View {
         VStack {
@@ -43,10 +45,36 @@ struct BookDetailView: View {
                 .padding()
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
+            
+            if(isButtonActive){
+                Text(book.isRented ? "Currently Rented" : "Available for Rent")
+                    .foregroundColor(book.isRented ? .red : .green)
+                    .padding(.top)
+                    .padding(.bottom)
+            }
 
-            Text(book.isRented ? "Currently Rented" : "Available for Rent")
-                .foregroundColor(book.isRented ? .red : .green)
-                .padding(.top)
+            
+            
+            if(isButtonActive){
+                
+                
+                Button(action: {
+                    firebaseManager.updateBook(bookId:  book.id!, userEmail: firebaseManager.loggedUser)
+                    isButtonActive = false
+                            }) {
+                                Text("Rent this book")
+                                    .font(.title)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                
+            }
+            
+            
+
+            
             
             Spacer()
         }
@@ -54,6 +82,8 @@ struct BookDetailView: View {
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)
     }
+    
+    
 }
 
 struct BookDetailView_Previews: PreviewProvider {

@@ -9,31 +9,39 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isUserLoggedIn = false
+    @StateObject private var firebaseManager = BooksViewModel.shared
 
     var body: some View {
         NavigationView{
             if isUserLoggedIn {
-                TabView {
-                    HomeScreen(isUserLoggedIn: $isUserLoggedIn)
-                        .tabItem {
-                            Label("Home", systemImage: "house.fill")
-                        }
+                
+                if firebaseManager.isAdmin{
+                    AdminPageView()
+                }else{
+                    TabView {
+                        HomeScreen(isUserLoggedIn: $isUserLoggedIn)
+                            .tabItem {
+                                Label("Home", systemImage: "house.fill")
+                            }
 
-                    MyBookShelfScreen()
-                        .tabItem {
-                            Label("MyBookShelf", systemImage: "books.vertical")
-                        }
-                    
-                    CategoryScreen()
-                        .tabItem {
-                            Label("Category", systemImage: "books.vertical")
-                        }
+                        MyBookShelfScreen()
+                            .tabItem {
+                                Label("MyBookShelf", systemImage: "books.vertical")
+                            }
+                        
+                        CategoryScreen()
+                            .tabItem {
+                                Label("Category", systemImage: "books.vertical")
+                            }
 
-                    UserScreen(isUserLoggedIn: $isUserLoggedIn)
-                        .tabItem {
-                            Label("User", systemImage: "person")
-                        }
+                        UserScreen(isUserLoggedIn: $isUserLoggedIn)
+                            .tabItem {
+                                Label("User", systemImage: "person")
+                            }
+                        
+                    }
                 }
+                
             } else {
                 LoginView(isUserLoggedIn: $isUserLoggedIn)
             }
