@@ -142,19 +142,54 @@ class BooksViewModel: ObservableObject{
         }
     }
     
-    func updateBook(bookId: String, userEmail: String){
+    func updateBook(bookId: String, userEmail: String) {
+        let db = Firestore.firestore()
         
         db.collection("books").document(bookId).updateData([
-                "isRented": true,
-                "renter": userEmail
-            ]) { error in
-                if let error = error {
-                    print("Error updating book: \(error.localizedDescription)")
-                } else {
-                    print("Book successfully updated.")
-                }
+            "isRented": true,
+            "renter": FieldValue.arrayUnion([userEmail])
+        ]) { error in
+            if let error = error {
+                print("Error updating book: \(error.localizedDescription)")
+            } else {
+                print("Book successfully updated.")
             }
+        }
+    }
+    
+    func returnBook(bookId: String, userEmail: String) {
+        let db = Firestore.firestore()
+
+        db.collection("books").document(bookId).updateData([
+            "renter": FieldValue.arrayRemove([userEmail])
+        ]) { error in
+            if let error = error {
+                print("Error returning book: \(error.localizedDescription)")
+            } else {
+                print("Book successfully returned.")
+            }
+        }
+    }
+    
+    func getRenters(of bookId: String, completion: @escaping ([String]?) -> Void) {
+        let db = Firestore.firestore()
         
+        db.collection("books").document(bookId).getDocument { document, error in
+            if let error = error {
+                print("Error getting book document: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+            
+            if let document = document, document.exists {
+                let data = document.data()
+                let renters = data?["renter"] as? [String]
+                completion(renters)
+            } else {
+                print("Book not found.")
+                completion(nil)
+            }
+        }
     }
     
     // Add Book

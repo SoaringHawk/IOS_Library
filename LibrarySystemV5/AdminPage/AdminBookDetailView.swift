@@ -86,7 +86,7 @@ struct AdminBookDetailView: View {
         
         // Update the local book object with the new rented status and renter email
         book.isRented = isRented
-        book.renter = ""
+        book.renter = []
         
         // Optionally: Add additional logic to show a success message
         
@@ -94,5 +94,5 @@ struct AdminBookDetailView: View {
 }
 
 #Preview {
-    AdminBookDetailView(book: Book(id: "123", author: "Author Name", category: "Category", isRented: false, title: "Book Title", imgUrl: "https://example.com/image.jpg", description: "Book Description", renter: "", pdfLink: "https://example.com/book.pdf"))
+    AdminBookDetailView(book: Book(id: "123", author: "Author Name", category: "Category", isRented: false, title: "Book Title", imgUrl: "https://example.com/image.jpg", description: "Book Description", renter: [], pdfLink: "https://example.com/book.pdf"))
 }

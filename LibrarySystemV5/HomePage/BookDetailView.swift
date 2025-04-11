@@ -12,6 +12,7 @@ struct BookDetailView: View {
     var book: Book
     @StateObject private var firebaseManager = BooksViewModel.shared
     @State private var isButtonActive = true
+    @State private var isAlreadyRented = false
     
     var body: some View {
         VStack {
@@ -46,31 +47,51 @@ struct BookDetailView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
             
-            if(isButtonActive){
-                Text(book.isRented ? "Currently Rented" : "Available for Rent")
-                    .foregroundColor(book.isRented ? .red : .green)
-                    .padding(.top)
-                    .padding(.bottom)
-            }
+//            if(isButtonActive){
+//                Text(book.isRented ? "Currently Rented" : "Available for Rent")
+//                    .foregroundColor(book.isRented ? .red : .green)
+//                    .padding(.top)
+//                    .padding(.bottom)
+//            }
 
             
             
-            if(isButtonActive){
+            
                 
-                
-                Button(action: {
-                    firebaseManager.updateBook(bookId:  book.id!, userEmail: firebaseManager.loggedUser)
-                    isButtonActive = false
-                            }) {
-                                Text("Rent this book")
-                                    .font(.title)
-                                    .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
-                
-            }
+            
+            if isAlreadyRented {
+                        Button(action: {
+                            firebaseManager.returnBook(bookId: book.id!, userEmail: firebaseManager.loggedUser)
+                            isAlreadyRented = false
+                        }) {
+                            Text("Return this book")
+                                .font(.title)
+                                .padding()
+                                .background(Color.red)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    } else {
+                        Button(action: {
+                            firebaseManager.updateBook(bookId: book.id!, userEmail: firebaseManager.loggedUser)
+                            isAlreadyRented = true
+                        }) {
+                            Text("Rent this book")
+                                .font(.title)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    }
+                }
+                .onAppear {
+                    getRenters(of: book.id!) { renters in
+                        if let renters = renters {
+                            isAlreadyRented = renters.contains(firebaseManager.loggedUser)
+                        }
+                    }
+            
             
             
 
@@ -83,6 +104,25 @@ struct BookDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    func getRenters(of bookId: String, completion: @escaping ([String]?) -> Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("books").document(bookId).getDocument { document, error in
+            if let error = error {
+                print("Error getting book document: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+            
+            if let document = document, document.exists {
+                let data = document.data()
+                let renters = data?["renter"] as? [String]
+                completion(renters)
+            } else {
+                completion(nil)
+            }
+        }
+    }
     
 }
 
@@ -96,7 +136,7 @@ struct BookDetailView_Previews: PreviewProvider {
             title: "Dune",
             imgUrl: "dune",
             description: "Dune is a science fiction novel by Frank Herbert, set on the desert planet Arrakis, focusing on politics, religion, and ecology.",
-            renter: "usertest@mail.com",
+            renter: [],
             pdfLink: "")
         
         BookDetailView(book: sampleBook)

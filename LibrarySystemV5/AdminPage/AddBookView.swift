@@ -16,7 +16,8 @@ struct AddBookView: View {
     @State private var description = ""
     @State private var pdfLink = ""
     @State private var isRented = false
-    @State private var renter = ""
+    @State private var renterInput = ""
+
 
     @StateObject private var firebaseManager = BooksViewModel.shared
     
@@ -53,11 +54,12 @@ struct AddBookView: View {
             Toggle("Is Rented", isOn: $isRented)
                 .padding()
             
-            TextField("Renter (if rented)", text: $renter)
+            TextField("Renter (if rented)", text: $renterInput)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
             Button("Add Book") {
+                let renterArray = renterInput.isEmpty ? [] : [renterInput]
                 let newBook = Book(
                     author: author,
                     category: category,
@@ -65,7 +67,7 @@ struct AddBookView: View {
                     title: title,
                     imgUrl: imgUrl,
                     description: description,
-                    renter: renter,
+                    renter: renterArray,
                     pdfLink: pdfLink
                 )
                 firebaseManager.addBook(newBook)

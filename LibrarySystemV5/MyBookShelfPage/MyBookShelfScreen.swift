@@ -34,7 +34,7 @@ struct MyBookShelfScreen: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(firebaseManager.books, id: \.id) { book in
-                            if book.renter == firebaseManager.loggedUser {
+                            if book.renter.contains(firebaseManager.loggedUser)  {
                                 if let url = URL(string: book.pdfLink), url != nil {
                                     Button(action: {
                                         
