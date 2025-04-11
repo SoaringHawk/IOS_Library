@@ -26,7 +26,7 @@ struct ContentView: View {
 
                         MyBookShelfScreen()
                             .tabItem {
-                                Label("MyBookShelf", systemImage: "books.vertical")
+                                Label("MyBookShelf", systemImage: "book.pages")
                             }
                         
                         CategoryScreen()

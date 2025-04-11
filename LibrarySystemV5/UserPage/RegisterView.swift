@@ -17,57 +17,66 @@ struct RegisterView: View {
     @Environment(\.dismiss) var dismiss 
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
-            Text("Register")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+        
+        ZStack {
+            Color(red: 0.98, green: 0.96, blue: 0.90)
+                .edgesIgnoringSafeArea(.all)
+            
+            ScrollView{
+                VStack(spacing: 20) {
+                    Spacer()
+                    Text("Register")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
 
-            TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-                .autocapitalization(.none)
-                .keyboardType(.emailAddress)
+                    TextField("Email", text: $email)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
 
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
+                    SecureField("Password", text: $password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
 
-            SecureField("Confirm Password", text: $confirmPassword)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
+                    SecureField("Confirm Password", text: $confirmPassword)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
 
-            if let errorMessage = errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-            }
-
-            Button(action: {
-                if password == confirmPassword {
-                    firebaseManager.registerUser(email: email, password: password) { error in
-                        if let error = error {
-                            errorMessage = error.localizedDescription
-                        } else {
-                            errorMessage = nil
-                            dismiss()
-                        }
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
                     }
-                } else {
-                    errorMessage = "Passwords do not match"
-                }
-            }) {
-                Text("Register")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .padding(.horizontal)
-            }
 
-            Spacer()
+                    Button(action: {
+                        if password == confirmPassword {
+                            firebaseManager.registerUser(email: email, password: password) { error in
+                                if let error = error {
+                                    errorMessage = error.localizedDescription
+                                } else {
+                                    errorMessage = nil
+                                    dismiss()
+                                }
+                            }
+                        } else {
+                            errorMessage = "Passwords do not match"
+                        }
+                    }) {
+                        Text("Register")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                    }
+
+                    Spacer()
+                }
+                .padding(.top, 150)
+            }
         }
-        .padding()
+
     }
 }
 

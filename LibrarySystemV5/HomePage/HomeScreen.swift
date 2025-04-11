@@ -26,6 +26,10 @@ struct HomeScreen: View {
                     
                     BookSortedView()
                     
+                    FooterInfoView()
+                        .padding(.top, 20)
+                        .padding(.bottom, 40)
+                    
                     
                 }
                 .padding(.top, 10)

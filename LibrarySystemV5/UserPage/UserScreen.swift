@@ -18,13 +18,14 @@ struct UserScreen: View {
             Spacer(minLength: 40)
 
             
-            Image(systemName: "person.crop.circle.fill")
+            Image("userHead")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 140, height: 140)
+                .frame(width: 180, height: 180)
                 .clipShape(Circle())
                 .shadow(radius: 10)
                 .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+            Spacer()
             
             
             Text(firebaseManager.loggedUser)
