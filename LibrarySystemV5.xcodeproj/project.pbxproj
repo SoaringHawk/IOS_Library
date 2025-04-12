@@ -9,10 +9,22 @@
 /* Begin PBXBuildFile section */
 		049AB3B52D877C8C00BB867B /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 049AB3B42D877C8C00BB867B /* FirebaseCore */; };
 		049AB3B72D877C9000BB867B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 049AB3B62D877C9000BB867B /* FirebaseFirestore */; };
+		04B7BB9C2DAAE03E0058E409 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 04B7BB9B2DAAE03E0058E409 /* Kingfisher */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04B7BB8D2DAACDEA0058E409 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 049AB3782D877B7900BB867B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 049AB37F2D877B7900BB867B;
+			remoteInfo = LibrarySystemV5;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		049AB3802D877B7900BB867B /* LibrarySystemV5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibrarySystemV5.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04B7BB892DAACDEA0058E409 /* LibrarySystemV5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibrarySystemV5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -28,8 +40,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B7BB9C2DAAE03E0058E409 /* Kingfisher in Frameworks */,
 				049AB3B52D877C8C00BB867B /* FirebaseCore in Frameworks */,
 				049AB3B72D877C9000BB867B /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04B7BB862DAACDEA0058E409 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				049AB3802D877B7900BB867B /* LibrarySystemV5.app */,
+				04B7BB892DAACDEA0058E409 /* LibrarySystemV5Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,10 +103,31 @@
 			packageProductDependencies = (
 				049AB3B42D877C8C00BB867B /* FirebaseCore */,
 				049AB3B62D877C9000BB867B /* FirebaseFirestore */,
+				04B7BB9B2DAAE03E0058E409 /* Kingfisher */,
 			);
 			productName = LibrarySystemV5;
 			productReference = 049AB3802D877B7900BB867B /* LibrarySystemV5.app */;
 			productType = "com.apple.product-type.application";
+		};
+		04B7BB882DAACDEA0058E409 /* LibrarySystemV5Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04B7BB912DAACDEA0058E409 /* Build configuration list for PBXNativeTarget "LibrarySystemV5Tests" */;
+			buildPhases = (
+				04B7BB852DAACDEA0058E409 /* Sources */,
+				04B7BB862DAACDEA0058E409 /* Frameworks */,
+				04B7BB872DAACDEA0058E409 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04B7BB8E2DAACDEA0058E409 /* PBXTargetDependency */,
+			);
+			name = LibrarySystemV5Tests;
+			packageProductDependencies = (
+			);
+			productName = LibrarySystemV5Tests;
+			productReference = 04B7BB892DAACDEA0058E409 /* LibrarySystemV5Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,6 +142,10 @@
 					049AB37F2D877B7900BB867B = {
 						CreatedOnToolsVersion = 16.0;
 					};
+					04B7BB882DAACDEA0058E409 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 049AB37F2D877B7900BB867B;
+					};
 				};
 			};
 			buildConfigurationList = 049AB37B2D877B7900BB867B /* Build configuration list for PBXProject "LibrarySystemV5" */;
@@ -113,6 +159,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				049AB3B22D877C6C00BB867B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				04B7BB9A2DAADF220058E409 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 049AB3812D877B7900BB867B /* Products */;
@@ -120,12 +167,20 @@
 			projectRoot = "";
 			targets = (
 				049AB37F2D877B7900BB867B /* LibrarySystemV5 */,
+				04B7BB882DAACDEA0058E409 /* LibrarySystemV5Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		049AB37E2D877B7900BB867B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04B7BB872DAACDEA0058E409 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -142,7 +197,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04B7BB852DAACDEA0058E409 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04B7BB8E2DAACDEA0058E409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 049AB37F2D877B7900BB867B /* LibrarySystemV5 */;
+			targetProxy = 04B7BB8D2DAACDEA0058E409 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		049AB38C2D877B7F00BB867B /* Debug */ = {
@@ -320,6 +390,40 @@
 			};
 			name = Release;
 		};
+		04B7BB8F2DAACDEA0058E409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christian.LibrarySystemV5Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LibrarySystemV5.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LibrarySystemV5";
+			};
+			name = Debug;
+		};
+		04B7BB902DAACDEA0058E409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christian.LibrarySystemV5Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LibrarySystemV5.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LibrarySystemV5";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -341,6 +445,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		04B7BB912DAACDEA0058E409 /* Build configuration list for PBXNativeTarget "LibrarySystemV5Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04B7BB8F2DAACDEA0058E409 /* Debug */,
+				04B7BB902DAACDEA0058E409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -350,6 +463,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.9.0;
+			};
+		};
+		04B7BB9A2DAADF220058E409 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -364,6 +485,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 049AB3B22D877C6C00BB867B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		04B7BB9B2DAAE03E0058E409 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04B7BB9A2DAADF220058E409 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

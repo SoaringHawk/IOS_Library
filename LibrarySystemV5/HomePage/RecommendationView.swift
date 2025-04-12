@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import Kingfisher
 
 struct RecommendationView: View {
     @ObservedObject var firebaseManager: BooksViewModel
@@ -23,21 +24,18 @@ struct RecommendationView: View {
                     NavigationLink(destination: BookDetailView(book: book)) {
                         //This navigation link jump you to the books detail
                         VStack {
-                            AsyncImage(url: URL(string: book.imgUrl)) { phase in
-                                switch phase {
-                                case .empty:
+                            KFImage(URL(string: book.imgUrl))
+                                .placeholder {
                                     ProgressView()
-                                case .success(let image):
-                                    image.resizable()
-                                        .scaledToFit()
-                                        .frame(width: 120, height: 180)
-                                        .cornerRadius(8)
-                                case .failure:
-                                    Image(systemName: "book.fill")
-                                @unknown default:
-                                    EmptyView()
                                 }
-                            }
+                                .onFailure { error in
+                                    print("Image failed to load: \(error.localizedDescription)")
+                                }
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 120, height: 180)
+                                .cornerRadius(8)
+                            
                             Text(book.title)
                                 .foregroundColor(.gray)
                                 .fontWeight(.semibold)

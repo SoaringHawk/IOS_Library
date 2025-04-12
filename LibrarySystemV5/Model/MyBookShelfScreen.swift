@@ -10,6 +10,7 @@ import SwiftUI
 struct MyBookShelfScreen: View {
     @StateObject private var firebaseManager = BooksViewModel.shared
     @State private var navigationActive = false
+    @State private var selectedPdfURL: URL?
     
     let columns = [
         GridItem(.flexible()),
@@ -37,11 +38,11 @@ struct MyBookShelfScreen: View {
                             if book.renter.contains(firebaseManager.loggedUser)  {
                                 if let url = URL(string: book.pdfLink), url != nil {
                                     Button(action: {
-                                        
+                                        selectedPdfURL = URL(string: book.pdfLink)
                                         navigationActive = true
                                     }) {
                                         VStack {
-                                            BookGridItem(book: book)
+                                            BookGridView(book: book)
                                             Text("Read Book")
                                                 .fontWeight(.bold)
                                                 .foregroundColor(.blue)
@@ -49,13 +50,14 @@ struct MyBookShelfScreen: View {
                                         }
                                     }
                                     .background(
-                                        NavigationLink(destination: Reader(url: url), isActive: $navigationActive) {
+                                        NavigationLink(
+                                            destination: selectedPdfURL.map { Reader(url: $0) },
+                                            isActive: $navigationActive
+                                        ) {
                                             EmptyView()
                                         }
-                                        .hidden() // Hide the actual NavigationLink!
-                                        //this is the link for the pdf
-                                    )
-                                }
+                                        .hidden()
+                                    )                                }
                             }
                         }
                     }
@@ -68,6 +70,8 @@ struct MyBookShelfScreen: View {
         }
     }
 }
+
+
 
 #Preview {
     MyBookShelfScreen()

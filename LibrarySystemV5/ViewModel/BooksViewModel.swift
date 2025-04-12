@@ -153,6 +153,7 @@ class BooksViewModel: ObservableObject{
                 print("Error updating book: \(error.localizedDescription)")
             } else {
                 print("Book successfully updated.")
+                self.fetchBooks() 
             }
         }
     }
@@ -212,7 +213,7 @@ class BooksViewModel: ObservableObject{
         
         // Add User
         func addUser(email: String, password: String) {
-            // Firebase Authentication or Database logic to add a user
+            // Firebase Authentication or Database logic to add a user. to come
             print("Adding user with email: \(email)")
         }
 }

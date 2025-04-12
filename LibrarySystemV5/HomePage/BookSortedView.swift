@@ -33,7 +33,7 @@ struct BookSortedView: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(firebaseManager.books.prefix(6), id: \.id) { book in
                             NavigationLink(destination: BookDetailView(book: book)) {
-                                    BookGridItem(book: book)
+                                BookGridView(book: book)
                                 }
                         }
                     }
@@ -47,39 +47,39 @@ struct BookSortedView: View {
     }
 }
 
-struct BookGridItem: View {
-    var book: Book
-    
-    var body: some View {
-        VStack {
-            AsyncImage(url: URL(string: book.imgUrl)) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image.resizable()
-                         .scaledToFit()
-                         .frame(width: 120, height: 180)
-                         .cornerRadius(8)
-                case .failure:
-                    Image(systemName: "book.fill")
-                @unknown default:
-                    EmptyView()
-                }
-            }
-            
-            Text(book.title)
-                .font(.headline)
-                .multilineTextAlignment(.center)
-            
-            Text(book.author)
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-        }
-        .padding(.vertical)
-    }
-}
+//struct BookGridItem: View {
+//    var book: Book
+//    
+//    var body: some View {
+//        VStack {
+//            AsyncImage(url: URL(string: book.imgUrl)) { phase in
+//                switch phase {
+//                case .empty:
+//                    ProgressView()
+//                case .success(let image):
+//                    image.resizable()
+//                         .scaledToFit()
+//                         .frame(width: 120, height: 180)
+//                         .cornerRadius(8)
+//                case .failure:
+//                    Image(systemName: "book.fill")
+//                @unknown default:
+//                    EmptyView()
+//                }
+//            }
+//            
+//            Text(book.title)
+//                .font(.headline)
+//                .multilineTextAlignment(.center)
+//            
+//            Text(book.author)
+//                .font(.subheadline)
+//                .foregroundColor(.gray)
+//                .multilineTextAlignment(.center)
+//        }
+//        .padding(.vertical)
+//    }
+//}
 
 struct BookSortedView_Previews: PreviewProvider {
     static var previews: some View {
