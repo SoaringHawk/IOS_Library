@@ -9,7 +9,11 @@ import SwiftUI
 
 struct SearchView: View {
     @Binding var isUserLoggedIn: Bool
-    @Binding var searchText: String
+    @StateObject private var firebaseManager = BooksViewModel.shared
+    
+    @State private var searchText: String = ""
+    @State private var navigateToResults = false
+    @State private var submittedText = ""
 
     var body: some View {
         NavigationStack {
@@ -28,22 +32,35 @@ struct SearchView: View {
 
                 Spacer()
 
-                HStack {
-                    TextField("Search for books...", text: $searchText)
-                }
-                .padding(10)
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 2)
-                .frame(height: 14)
+                TextField("Search for books...", text: $searchText, onCommit: {
+                                    submittedText = searchText
+                                    navigateToResults = true
+                                })
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.horizontal)
+                            }
+                            .padding()
+
+                            
+                            
+
+                            // NavigationLink to SearchResultsView
+                            NavigationLink(
+                                destination: SearchResultView(
+                                    searchText: submittedText
+                                ),
+                                isActive: $navigateToResults
+                            ) {
+                                EmptyView()
+                            }
             }
             .padding(.horizontal)
         }
-    }
+    
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(isUserLoggedIn: .constant(false), searchText: .constant(""))
+        SearchView(isUserLoggedIn: .constant(false))
     }
 }

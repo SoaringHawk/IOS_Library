@@ -15,7 +15,7 @@ struct HomeScreen: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 30) {
-                    SearchView(isUserLoggedIn: $isUserLoggedIn, searchText: $searchText)
+                    SearchView(isUserLoggedIn: $isUserLoggedIn)
                     
                     
                     AdvertisementScrollView()

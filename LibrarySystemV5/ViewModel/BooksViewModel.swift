@@ -56,7 +56,12 @@ class BooksViewModel: ObservableObject{
     }
     
     
-   
+    func searchBooks(with text: String) -> [Book] {
+            books.filter {
+                $0.title.localizedCaseInsensitiveContains(text) ||
+                $0.author.localizedCaseInsensitiveContains(text)
+            }
+        }
     
     func refreshRandomBooks() {
         DispatchQueue.main.async {
