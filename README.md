@@ -1,10 +1,10 @@
-# iOS Library Book Rental App
+# 📚 iOS Library Book Rental App
 
 This app is a SwiftUI-based book rental platform integrated with Firebase Firestore. It provides book browsing, rental functionality, user registration/login, and admin-level book management.
 
 ---
 
-## Features
+## 🛠️ Features
 
 ### Book Management
 - View a real-time list of books
@@ -25,7 +25,7 @@ This app is a SwiftUI-based book rental platform integrated with Firebase Firest
 
 ---
 
-## Architecture
+## 🧱 Architecture
 
 - **UI:** SwiftUI-based views
 - **ViewModel:** `BooksViewModel` centralizes all logic for book handling and Firestore interaction
@@ -34,7 +34,7 @@ This app is a SwiftUI-based book rental platform integrated with Firebase Firest
 
 ---
 
-## Firestore Structure
+## ⚙️ Firestore Structure
 
 ### `Books` Collection
 
