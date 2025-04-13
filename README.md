@@ -41,14 +41,19 @@ This app is a SwiftUI-based book rental platform integrated with Firebase Firest
 Each book document includes:
 - `title`: String  
 - `author`: String  
-- `isAvailable`: Bool  
-- `rentedBy`: String (email of user or empty)  
+- `category`: String  
+- `description`: String  
+- `imgUrl`: String (cover image URL)  
+- `pdfLink`: String (link to PDF of book)  
+- `isRented`: Bool  
+- `renter`: Array of Strings (emails of users who rented the book)  
 
 ### `Users` Collection
 
 Each user document includes:
 - `email`: String  
-- `isAdmin`: Bool  
+- `password`: String  
+- `isAdmin`: Bool   
 
 ---
 
