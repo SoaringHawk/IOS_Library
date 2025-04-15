@@ -112,7 +112,7 @@ struct NoteItem: View {
     }
 }
 
-// 预览
+
 #Preview {
     SaleBookScreen()
 }

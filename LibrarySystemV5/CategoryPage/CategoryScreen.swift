@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 
 struct CategoryScreen: View {
-    // 状态变量
+    // State variables
     @State private var selectedCategory: Category = .fiction //The Fiction category is selected by default
     @State private var books: [Book] = []
     @State private var isLoading = false
@@ -34,11 +34,11 @@ struct CategoryScreen: View {
             paginationControls
         }
         .onAppear {
-            loadBooks() // 页面出现时加载默认分类的书籍
+            loadBooks() // Load the default category of books when the page appears
         }
     }
     
-    // 分类选择器视图
+    // Category selector view
     private var categorySelector: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
@@ -61,7 +61,7 @@ struct CategoryScreen: View {
         }
     }
     
-    // 书籍网格视图
+    // Books Grid View
     private var bookGrid: some View {
         ScrollView {
             LazyVGrid(columns: gridItems, spacing: 20) {
@@ -152,7 +152,7 @@ struct CategoryScreen: View {
         }
     }
     
-    // 更新分页文档数组
+    // Update an array of paginated documents
     private func updatePageDocuments(with document: DocumentSnapshot?) {
         if currentPage + 1 >= pageDocuments.count {
             pageDocuments.append(document)
@@ -179,12 +179,12 @@ struct CategoryScreen: View {
     private func resetPagination() {
         books.removeAll()
         currentPage = 0
-        pageDocuments = [nil] // 重置为初始状态
+        pageDocuments = [nil]
         canLoadMore = true
     }
 }
 
-// 书籍卡片视图
+
 //struct BookCardView: View {
 //    let book: Book
 //    
