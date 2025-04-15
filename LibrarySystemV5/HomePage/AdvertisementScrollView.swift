@@ -17,7 +17,7 @@ struct AdvertisementScrollView: View {
                     NavigationLink(destination: destinationView(for: imgName)) {
                         Image(imgName)
                             .resizable()
-                            .scaledToFit()
+                            .scaledToFill()
                             .frame(width: UIScreen.main.bounds.width, height: 200)
                             .clipped()
                     }

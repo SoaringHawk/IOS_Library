@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BookClubScreen: View {
-    // 活动数据
 
     let hoster = "Jerry"
     let currentBook = "Three Body Problem"

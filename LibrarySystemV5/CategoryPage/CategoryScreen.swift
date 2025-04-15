@@ -73,14 +73,14 @@ struct CategoryScreen: View {
                 
                 if isLoading {
                     ProgressView()
-                        .gridCellColumns(2) // 跨两列显示加载指示器
+                        .gridCellColumns(2)
                 }
             }
             .padding()
         }
     }
     
-    // 分页控制视图
+    
     private var paginationControls: some View {
         HStack {
             Button("Last Page") {
@@ -102,18 +102,18 @@ struct CategoryScreen: View {
         .padding()
     }
     
-    // 加载书籍数据
+    // load book data
     private func loadBooks() {
         guard !isLoading else { return }
         
         isLoading = true
         
-        // 创建基础查询
+        
         var query = Firestore.firestore().collection("books")
             .whereField("category", isEqualTo: selectedCategory.rawValue)
             .limit(to: pageSize)
         
-        // 安全处理分页
+        // handle pages
         if !pageDocuments.isEmpty {
             let safeIndex = min(currentPage, pageDocuments.count - 1)
             if let startDoc = pageDocuments[safeIndex] {
@@ -124,30 +124,30 @@ struct CategoryScreen: View {
         query.getDocuments { snapshot, error in
             isLoading = false
             
-            // 错误处理
+            
             if let error = error {
-                print("加载书籍错误: \(error.localizedDescription)")
+                print("loading book error: \(error.localizedDescription)")
                 return
             }
             
             guard let documents = snapshot?.documents, !documents.isEmpty else {
-                print("没有获取到文档或文档为空")
+                print("The file is empty")
                 canLoadMore = false
                 return
             }
             
-            // 解析书籍数据
+            
             do {
                 let newBooks = try documents.map { try $0.data(as: Book.self) }
                 books = newBooks
                 
-                // 更新分页游标
+                
                 updatePageDocuments(with: documents.last)
                 
-                // 检查是否还能加载更多
+                
                 canLoadMore = documents.count == pageSize
             } catch {
-                print("解析书籍数据错误: \(error)")
+                print("anayse book data error: \(error)")
             }
         }
     }
