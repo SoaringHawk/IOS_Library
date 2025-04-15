@@ -81,15 +81,14 @@ struct AdminBookDetailView: View {
     
     // Function to update book attributes
     private func updateBookAttributes() {
-        // Use the provided function to update the book data
-        firebaseManager.updateBook(bookId: book.id ?? "", userEmail: "")
-        
-        // Update the local book object with the new rented status and renter email
+        guard let bookId = book.id, !bookId.isEmpty else { return }
+
+        // Update Firestore with current toggle + renter email
+        firebaseManager.updateBook(bookId: bookId, isRented: isRented, userEmail: renterEmail)
+
+        // Update local book object
         book.isRented = isRented
-        book.renter = []
-        
-        // Optionally: Add additional logic to show a success message
-        
+        book.renter = isRented ? [renterEmail] : []
     }
 }
 

@@ -60,30 +60,31 @@ struct BookDetailView: View {
                 
             
             if isAlreadyRented {
-                        Button(action: {
-                            firebaseManager.returnBook(bookId: book.id!, userEmail: firebaseManager.loggedUser)
-                            isAlreadyRented = false
-                        }) {
-                            Text("Return this book")
-                                .font(.title)
-                                .padding()
-                                .background(Color.red)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                    } else {
-                        Button(action: {
-                            firebaseManager.updateBook(bookId: book.id!, userEmail: firebaseManager.loggedUser)
-                            isAlreadyRented = true
-                        }) {
-                            Text("Rent this book")
-                                .font(.title)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                    }
+                Button(action: {
+                    firebaseManager.toggleBookRental(bookId: book.id!, isRenting: false, userEmail: firebaseManager.loggedUser)
+                    isAlreadyRented = false
+                }) {
+                    Text("Return this book")
+                        .font(.title)
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+            } else {
+                Button(action: {
+                    firebaseManager.toggleBookRental(bookId: book.id!, isRenting: true, userEmail: firebaseManager.loggedUser)
+                    isAlreadyRented = true
+                }) {
+                    Text("Rent this book")
+                        .font(.title)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+            }
+
                 }
                 .onAppear {
                     getRenters(of: book.id!) { renters in
@@ -123,6 +124,9 @@ struct BookDetailView: View {
             }
         }
     }
+    
+    
+
     
 }
 

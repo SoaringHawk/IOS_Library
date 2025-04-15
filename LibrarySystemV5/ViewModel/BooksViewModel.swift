@@ -147,18 +147,37 @@ class BooksViewModel: ObservableObject{
         }
     }
     
-    func updateBook(bookId: String, userEmail: String) {
+    func updateBook(bookId: String, isRented: Bool, userEmail: String) {
         let db = Firestore.firestore()
         
         db.collection("books").document(bookId).updateData([
-            "isRented": true,
-            "renter": FieldValue.arrayUnion([userEmail])
+            "isRented": isRented,
+            "renter": isRented ? FieldValue.arrayUnion([userEmail]) : []
         ]) { error in
             if let error = error {
                 print("Error updating book: \(error.localizedDescription)")
             } else {
                 print("Book successfully updated.")
-                self.fetchBooks() 
+                self.fetchBooks()
+            }
+        }
+    }
+    
+    func toggleBookRental(bookId: String, isRenting: Bool, userEmail: String) {
+        let db = Firestore.firestore()
+        let bookRef = db.collection("books").document(bookId)
+
+        let updates: [String: Any] = [
+            "isRented": isRenting,
+            "renter": isRenting ? FieldValue.arrayUnion([userEmail]) : FieldValue.arrayRemove([userEmail])
+        ]
+
+        bookRef.updateData(updates) { error in
+            if let error = error {
+                print("Error updating book: \(error.localizedDescription)")
+            } else {
+                print("Book rental updated successfully.")
+                self.fetchBooks()
             }
         }
     }

@@ -17,30 +17,30 @@ struct AdminPageView: View {
         NavigationView {
             VStack {
                 // Admin Actions Section
-                HStack {
-                    Button(action: {
-                        showingAddBook = true
-                    }) {
-                        Text("Add Book")
-                            .font(.title2)
-                            .padding()
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                    
-                    Button(action: {
-                        showingAddUser = true
-                    }) {
-                        Text("Add User")
-                            .font(.title2)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                }
-                .padding()
+//                HStack {
+//                    Button(action: {
+//                        showingAddBook = true
+//                    }) {
+//                        Text("Add Book")
+//                            .font(.title2)
+//                            .padding()
+//                            .background(Color.green)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(8)
+//                    }
+//                    
+//                    Button(action: {
+//                        showingAddUser = true
+//                    }) {
+//                        Text("Add User")
+//                            .font(.title2)
+//                            .padding()
+//                            .background(Color.blue)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(8)
+//                    }
+//                }
+//                .padding()
                 
                 // Books List
                 List {
@@ -70,12 +70,12 @@ struct AdminPageView: View {
                                         .foregroundColor(book.isRented ? .red : .green)
                                 }
                                 Spacer()
-                                Button(action: {
-                                    firebaseManager.deleteBook(bookId: book.id!)
-                                }) {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
-                                }
+//                                Button(action: {
+//                                    firebaseManager.deleteBook(bookId: book.id!)
+//                                }) {
+//                                    Image(systemName: "trash")
+//                                        .foregroundColor(.red)
+//                                }
                             }
                         }
                     }
